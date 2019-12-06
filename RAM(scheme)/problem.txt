@@ -1,0 +1,136 @@
+Question: Consider male members of a family with father-son relationship only, where at the maximum there are only two sons for a father. All the family members have unique names (you may assume that all have first names only). Person A is the ancestor of Person B if A is father / grand father / great grand father etc. of B. Person A is the descendent of person B if A is the son / grand son / great grand son etc. of B.Represent the family as a rooted binary tree; you must write all the necessary constructors and selectors.
+
+1. Given a family and the name of a person, find the names of all his descendents.   
+2. Given a family and the name of a person, find the names of all his descendents who have no sons.   
+3. Given a family and the names of two persons, find their nearest common ancestor. 
+
+
+Problem 2 (Tree recursion)
+(a) Using the binary tree abstract data type as defined on page
+115 of the text (with selectors entry
+,
+left-branch
+, and
+right-branch
+and constructor
+make-tree
+), write the
+predicate
+all-smaller?
+that takes two arguments, a binary tree of numbers and a singl
+e
+number, and returns
+#t
+if every number in the tree is smaller than the second argumen
+t.
+Examples:
+> (define my-tree (make-tree 8 (make-tree 5 ’() ’())
+(make-tree 12 ’() ’())))
+> (all-smaller? my-tree 15)
+#T
+> (all-smaller? my-tree 10)
+#F
+(b) Using
+all-smaller?
+and, if you wish, a similar
+all-larger?
+(which you don’t have
+to write), write a predicate
+bst?
+that takes a binary tree of numbers as its argument,
+returning
+#t
+if and only if the tree is a binary
+search
+tree. (That is, your procedure should
+return true only if, at every node, all of the numbers in that n
+ode’s left branch are smaller
+than the entry at the node, and all of the numbers in the node’s
+right branch are larger
+than the entry.)
+Problem 3 (Tree recursion)
+This question concerns the Trees with constructor
+make-tree
+and selectors
+datum
+and
+children
+as discussed in lecture.
+Every node of a Tree has some number of children, possibly zer
+o. We’ll call that number the
+fanout
+of the node. (We are talking about the node’s own children, no
+t its grandchildren
+or more remote descendants.) For a given Tree, there is some n
+ode with a fanout larger or
+equal to the fanout of any other node. Write the procedure
+max-fanout
+that takes a Tree
+as its argument, and returns the largest fanout of any node in
+the Tree.
+
+
+4.
+
+Is My Tree Binary and Searchable?
+
+This problem uses the Tree Class defined here.
+
+Given an input tree, we want to test if the tree is a binary search tree. A tree is a binary search tree if for each of its branches, all of the values on the left subtree are less than the entry and all of the values on the right subtree are greater than the entry.
+
+5.
+
+
+In this problem we are going to be inserting an item into a binary search tree. Recall that a binary search tree means that all items on the left of the tree are less than the current entry and all items on the right of the tree are greater than the current entry. Note: We cannot insert into an empty tree because of our implementation. Since we are using None as our empty tree, we can’t add a .entry to None because it is not an object. This function should still work for all other trees though.
+
+6.postordertraversal
+This problem is a challenge problem and might touch on some concepts taught mainly in CS61B. However, as a CS61A student who has learned all about tree recursion, you should be able to complete a problem like this.
+
+We like to be able to traverse our trees in order to get all of the elements back into some sort of list. We can traverse the tree in many different ways. Post Order Traversal is one of them and the algorithm goes like this. First, we will recursively print out all the values to our left, then, we will recursively print out all the values on the right, finally, we will print out the current node’s entry. Take a look at the doctests below if you are still confused. Post in the comments section if you are still confused after reading the doctests.
+    4
+    1
+    6
+    8
+    7
+    5
+
+
+7.
+
+Pre Order Traversal of a Binary Tree
+
+This problem uses the Tree Class defined here.
+
+This problem is a challenge problem and might touch on some concepts taught mainly in CS61B. However, as a CS61A student who has learned all about tree recursion, you should be able to complete a problem like this.
+
+We like to be able to traverse our trees in order to get all of the elements back into some sort of list. We can traverse the tree in many different ways. Pre Order Traversal is one of them and the algorithm goes like this. First, we will print out or current value, then, we will recursively print out all the values to our left, then recursively print out all the values on the right. Take a look at the doctests below if you are still confused. Post in the comments section if you are still confused after reading the doctests
+ 5
+    1
+    4
+    7
+    6
+    8
+
+8.
+
+In Order Traversal of a Binary Tree
+
+This problem uses the Tree Class defined here.
+
+This problem is a challenge problem and might touch on some concepts taught mainly in CS61B. However, as a CS61A student who has learned all about tree recursion, you should be able to complete a problem like this.
+
+We like to be able to traverse our trees in order to get all of the elements back into some sort of list. We can traverse the tree in many different ways. In Order Traversal is one of them and the algorithm goes like this. First, we will recursively print out all the values to our left, then, we will print out the current node’s entry, then recursively print out all the values on the right. Take a look at the doctests below if you are still confused. Post in the comments section if you are still confused after reading the doctests.
+def in_order_traversal(tree):
+    """
+    >>> t = Tree(5, Tree(1, None, Tree(4)), Tree(7, Tree(6), Tree(8)))
+    >>> in_order_traversal(t)
+    1
+    4
+    5
+    6
+    7
+    8
+
+9.
+In this problem, we want to swap the left and right branches of our tree. Take a look at the doctests and leave comments below if anything is confusing/you want a hint.
+

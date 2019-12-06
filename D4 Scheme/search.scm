@@ -1,0 +1,12 @@
+(define (make-bst val ls rs) (list val ls rs))
+(define (get-bst-val bst) (car bst))
+(define (get-bst-ls bst) (cadr bst))
+(define (get-bst-rs bst) (caddr bst))
+(define (is-member-bst? x bst)
+  (cond ((null? bst) #f)
+        ((= x (get-bst-val bst)) #t)
+        ((< x (get-bst-val bst)) 
+         (is-member-bst? x (get-bst-ls bst)))
+        ((> x (get-bst-val bst))
+         (is-member-bst? x (get-bst-rs bst)))))
+

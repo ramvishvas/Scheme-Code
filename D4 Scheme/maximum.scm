@@ -1,0 +1,8 @@
+(define (make-bst val ls rs) (list val ls rs))
+(define (get-bst-val  bst) (car bst))
+(define (get-bst-ls bst) (cadr bst))
+(define (get-bst-rs bst) (caddr bst))
+(define (maximum bst)
+   (cond ((null? bst) 'error)
+         ((null? (get-bst-rs bst)) (get-bst-val bst))
+         (else (maximum (get-bst-rs bst)))))

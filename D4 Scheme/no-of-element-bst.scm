@@ -1,0 +1,7 @@
+(define (make-bst val ls rs) (list val ls rs))
+(define (get-bst-val bst) (car bst))
+(define (get-bst-ls bst) (cadr bst))
+(define (get-bst-rs bst) (caddr bst))
+(define (no-of-element-bst bst)
+  (cond ((null? bst) 0)
+        (else (+ 1 (no-of-element-bst (get-bst-ls bst)) (no-of-element-bst (get-bst-rs bst))))))

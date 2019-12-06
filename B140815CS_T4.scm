@@ -1,0 +1,35 @@
+(define (make-bst val ls rs) (list val ls rs))
+(define (is-empty? bst) (null? bst))
+(define (get-val bst) (car bst))
+(define (get-ls bst) (cadr bst))
+(define (get-rs bst) (caddr bst))
+
+(define (search bst val)
+   (cond ((is-empty? bst) '())
+         ((= val (get-val bst)) bst)
+         ((< val (get-val bst)) (search (get-ls bst) val))
+         ((> val (get-val bst)) (search (get-rs bst) val))))
+
+
+;input:- (is-desecdent? 30 35 '(55 (40 (30 (25 () ()) (35 () ())) (45 (41 () ()) (50 () ()))) (60 (59 () ()) (70 () ()))))
+;input:- (is-desecdent? 30 35 ())
+(define (is-desecdent? x y bst)
+    (cond ((null? bst) #f)
+        ((is-empty? (search bst y)) #f)
+        ((not (is-empty? (search (search bst y) x))) #t)
+        (else #f)))
+
+
+;input:- (get-smallest-subtree 30 35 '(55 (40 (30 (25 () ()) (35 () ())) (45 (41 () ()) (50 () ()))) (60 (59 () ()) (70 () ()))))
+;input:- (get-smallest-subtree 30 35 '())
+(define (get-smallest-subtree x y bst)
+    (cond ((null? bst) '())
+        ((and (is-empty? (search bst y))  (is-empty? (search bst x))) '())
+        ((or (and (> (get-val bst) x) (< (get-val bst) y))
+             (and (> (get-val bst) y) (< (get-val bst) x))) bst)
+        ((is-desecdent? x y bst) (search bst y))
+        ((is-desecdent? y x bst) (search bst x))
+        ((or (= (get-val bst) x) (= (get-val bst) y)) bst)
+        ((and (> (get-val bst) x) (> (get-val bst) y)) (get-smallest-subtree x y (get-ls bst)))
+        ((and (< (get-val bst) x) (< (get-val bst) y)) (get-smallest-subtree x y (get-rs bst)))))
+        

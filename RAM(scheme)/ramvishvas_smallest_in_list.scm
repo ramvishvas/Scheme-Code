@@ -1,0 +1,18 @@
+(define (lg1 ls1)
+	   (cond ((null? ls1) "not valid")
+	         ((null? (cdr ls1)) (car ls1))
+	         ((> (car ls1) (lg1 (cdr ls1))) (car ls1))
+	         (else (lg1 (cdr ls1)))))
+	         
+(define (min a b)
+	(cond ((< a b) a)
+	      ((> a b) b)
+	      ((= a b) a)
+	      ))
+	      
+(define (smallest ls)
+	(cond ((null? ls) "not-valid")
+	      ((null? (cdr ls) (car ls)))
+	      (else (min (car ls) (smallest (cdr ls))))
+	      )
+	      )	      	      
